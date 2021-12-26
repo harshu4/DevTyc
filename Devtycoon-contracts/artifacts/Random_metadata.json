@@ -1,0 +1,63 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "random",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"workspaces/default_workspace/contracts/RandomTest.sol": "Random"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"workspaces/default_workspace/contracts/RandomTest.sol": {
+			"keccak256": "0x3357cc4c50e764b05a97fb1a1f202d997ed1a4d69d6e7b616e4bd9c2348e68a8",
+			"urls": [
+				"bzz-raw://faff3a94858cb58b88893c81a9fd226727c362c881e9da96eec5c047d862981a",
+				"dweb:/ipfs/QmY2SRc2A6mgP6Vo8hv7eRg3JbhYFjEH93h5Y9pvpVqHsf"
+			]
+		}
+	},
+	"version": 1
+}
