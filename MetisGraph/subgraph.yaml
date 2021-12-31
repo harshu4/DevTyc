@@ -1,0 +1,120 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Gamecontract
+    network: mainnet
+    source:
+      address: "0x9FaE81D4889DA0aa84fE0Ef99E412f4E7e992e64"
+      abi: Gamecontract
+      startBlock: 55725
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Work
+
+      abis:
+        - name: Gamecontract
+          file: ./abis/Gamecontract.json
+      eventHandlers:
+        - event: AskWork(uint256,address,uint256,uint256,uint256)
+          handler: handleaskwork
+        - event: TakeWork(uint256,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handletakework
+        - event: CompleteWork(uint256,address)
+          handler: handlecompletework
+        - event:  UpgradeComputer(uint256,address)
+          handler: handleupgradecomp
+        - event: faucet(address)
+          handler: handlefaucet
+      file: ./src/gamecontract.ts
+
+  - kind: ethereum/contract
+    name: Coffee
+    network: mainnet
+    source:
+      address: "0xBA17C74B0Ee7EB6E9ce1897eE004D138CBF792b3"
+      abi: Coffee
+      startBlock: 55725
+        #   startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+      abis:
+        - name: Coffee
+          file: ./abis/Coffee.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/coffee.ts
+
+  - kind: ethereum/contract
+    name: Chocolate
+    network: mainnet
+    source:
+      address: "0x372ba1E1aAA70D64D272fbfD69a8D582679bd25D"
+      abi: Chocolate
+      startBlock: 55725
+        #   startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+      abis:
+        - name: Chocolate
+          file: ./abis/Chocolate.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/chocolate.ts
+  - kind: ethereum/contract
+    name: Energy
+    network: mainnet
+    source:
+      address: "0xd0d10179cb0d41f29fa23E39B7540201cF0Ed212"
+      abi: Energy
+      startBlock: 55725
+        #   startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscripts
+      entities:
+        - User
+      abis:
+        - name: Energy
+          file: ./abis/Energy.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/energy.ts
+  - kind: ethereum/contract
+    name: Work
+    network: mainnet
+    source:
+      address: "0x8f4b7c2E8A19Ee445C0674B70A08425b5B103Cfc"
+      abi: Work
+      startBlock: 55725
+        #   startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+      abis:
+        - name: Work
+          file: ./abis/Work.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/work.ts

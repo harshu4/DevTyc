@@ -1,0 +1,29 @@
+
+íåtype User @entity{
+  id:ID!
+  worklist:[Works!] @derivedFrom(field:"owner")
+  isworking: Boolean
+  level: Int
+  computerlevel: Int
+  lockedcoffee: BigInt
+  lockedchocolate: BigInt
+  lockedenergy: BigInt
+  currentworkint: BigInt
+  coffee:BigInt
+  work:BigInt
+  chocolate:BigInt
+  energy:BigInt
+}
+
+type Works @entity {
+  id: ID!
+  givenblock: BigInt
+  startblock: BigInt
+  endblock: BigInt
+  reward: BigInt
+  started: Boolean
+  totalblock:BigInt
+  notcompleted: Boolean
+  owner: User!
+}
+å
