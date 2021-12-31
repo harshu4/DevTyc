@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DevTycoon</title>
+	<link id="css" rel="stylesheet" href="vendor/dragula/dragula.min.css">
+	<link id="css" rel="stylesheet" href="./css/main.css">
+	<link id="css-dark-side" rel="stylesheet" href="">
+	<link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js" integrity="sha512-5erpERW8MxcHDF7Xea9eBQPiRtxbse70pFcaHJuOhdEBQeAxGQjUwgJbuBDWve+xP/u5IoJbKjyJk50qCnMD7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src='https://vjs.zencdn.net/7.15.4/video.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/hls.js@0.12.4"></script>
+	<script src="https://d1ktbyo67sh8fw.cloudfront.net/js/theta.umd.min.js"></script>
+	<script src="https://d1ktbyo67sh8fw.cloudfront.net/js/theta-hls-plugin.umd.min.js"></script>
+	<script src="https://d1ktbyo67sh8fw.cloudfront.net/js/videojs-theta-plugin.min.js"></script>
+</head>
+<body>
+	<div class="navbar">
+		<div class="brand"><span>DevTycoon Intranet</span></div>
+		<div class="menu">
+			<div >
+				<button id="metamask-btn" class="dropdown-button">Connect Metamask</button>
+				
+			</div>
+		</div>
+	</div>
+	<div id="news" direction="right" behavior="scroll" scrollamount="60" scrolldelay="1000" loop="1"></div>
+	<div class="left">
+		<div class="button-section">
+			<p class="header">Stats</p>
+			<div class="help stat" data-title="Your theta wallet address.">Address: <span id="address"></span></div>
+			<div class="help stat" data-title="Number of coffee you own.">WorkTokens (WK): <span id="wk"></span></div>
+			<div class="help stat" data-title="Number of coffee you own.">Coffee: <span id="coffee"></span></div>
+			<div class="help stat" data-title="Number of choclates you own.">Choclates: <span id="choclates"></span></div>
+			<div class="help stat" data-title="Number of energy drinks you own.">Energy Drinks: <span id="energy_drinks"></span></div>
+			<div class="help stat" data-title="Number of energy drinks you own.">Experience Level: <span id="exp_level"></span></div>
+			<div class="help stat" data-title="Number of energy drinks you own.">Computer Level: <span id="comp_level"></span></div>
+
+			<!--<div class="help stat" data-title="The amount of money you have.">Money: <span id="money"></span></div>
+			<div class="help stat" data-title="The money per pulse you earn while a project in progress">Money per pulse: <span id="incPerPulse"></span></div>
+			<div class="help stat" data-title="Pulse speed while a project in progress">Pulse speed: <span id="pulseSpeed"></span></div>
+			<div class="help stat" data-title="This is the computer model you have at the moment">Computer Model: <span id="pcmodel"></span></div>
+			<div class="help stat" data-title="Your computer version. The higher the better.">Computer Version: <span id="computerVersion"></span></div>
+			<div class="help stat" data-title="Number of jobs you have. Maximum 4 jobs.">Jobs: <span id="jobs"></span></div>
+			<div class="help stat" data-title="">Achievements unlocked: <span id="achievement-resume"></span></div>
+			<div class="help stat">Wild pixels poped: <span id="wild-pixels-poped"></span></div>-->
+		</div>
+		<div class="button-section" id="shop">
+			<p class="header">Shop</p>
+		</div>
+		<!--<div class="button-section" id="projects-section">
+			<p class="header">Projects</p>
+			<div class="help stat" data-title="Projects completed. You earn money by completing projects">Projects completed: <span id="projects">0</span></div>
+			<div class="spaced thin"></div>
+			<button id="takeQuickProject" disabled="disabled">Take quick project</button>
+		</div>-->
+		<div class="button-section" id="improvements-section">
+			<p class="header">Improvements</p>
+		</div>
+		<div class="button-section" id="faucet-section">
+			<p class="header">Faucet (Theta Testnet only)</p>
+			<button id="fwk" disabled="disabled">WorkTokens (WK) & Coffee</button>
+		</div>
+		<!--<div class="button-section achievements compact">
+			<p class="header">Achievements</p>
+			<div class="container">
+				<div id="achievement-list"></div>
+			</div>
+		</div>-->
+	</div>
+	<div class="right">
+		<div class="button-section">
+			<p class="header">System Output</p>
+			<div class="blink_me stat" id="showcase">
+			</div>
+		</div>
+		<div class="button-section jobList">
+			<p class="header">Jobs</p>
+			<p class="stats">Job status: <span id="job-finder-status"></span></p>
+			<button id="start-job-search" disabled="disabled">Start job search</button>
+			<button id="takeJob" disabled="disabled">Take job oportunity</button>
+			<button id="claimReward" disabled="disabled">Claim job reward</button>
+			<ul  id="job_data" class="job-list">
+			</ul>
+		</div>
+	
+		<div class="button-section" id="lottery">
+			<p class="header">Lottery</p>
+			<button id="buyTicket" class="help" data-title="Everyone has the right to be millionaire. Win a 1.000.000¢ prize!">Buy a ticket (1¢)</button>
+			<div class="stat">Money spent: <span id="moneySpent"></span></div>
+			<div class="stat">Money won: <span id="moneyWon"></span></div>
+			<div class="stat">Win percent: <span id="percentWon"></span></div>
+			<div id="info">-</div>
+			<div id="owned">-</div>
+			<div id="winner">-</div>
+		</div>
+	</div>
+	
+	<dialog id="xrv" style="flex-direction: column; align-items: center; justify-content: center; background-color: black; border-color: #0F0; border-width: 1px; width: 30%;">
+		<div style="display: flex; width: 100%; justify-content: flex-end;" >
+			<img id="close_dialog" height="26" width="26" src="./img/close.png">
+		</div>
+		<div style="width: 100%; display: flex;align-items: center; justify-content:space-evenly;  color: chartreuse;">
+			<div id="bcot" style="text-align: center;">
+				Coffee: 0
+			</div>
+			<div style="margin-left: 10px;">
+				<button id="bco" style=" width: 80px;"></button>
+			</div>
+		</div>
+		<div style="width: 100%;  display: flex; align-items: center; justify-content: space-evenly; color: chartreuse;">
+			<div id="bct" style="text-align: center;">
+				Choclates: 0
+			</div>
+			<div style="margin-left: 10px;">
+				<button id="bc" style=" width: 80px;"></button>
+			</div>
+		</div>
+		<div style="width: 100%;  display: flex;align-items: center; justify-content: space-evenly;  color: chartreuse;">
+			<div id="bedt" style="text-align: center;">
+				Energy Drinks: 0
+			</div>
+			<div style="margin-left: 10px;">
+				<button id="bed" style=" width: 80px;"></button>
+			</div>
+		</div>
+		<div style="width: 100%;display: flex;justify-content: center;align-items: center;">
+			<button id="startw" remaining=0 style=" width: 80px; margin-top: 10px;">Start</button>
+		</div>
+	</dialog>
+	<script src="js/abi.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/web3helper.js"></script>
+	<script src="js/graphhelper.js"></script>
+	<script src="js/core.js"></script>
+	<script src="js/marquee.js"></script>
+	<script src="js/core.base.js"></script>
+	<script src="js/projects.js"></script>
+	<script src="js/achievements.js"></script>
+	<script src="js/improvements.js"></script>
+	<script src="js/employees.js"></script>
+	<script src="js/rents.js"></script>
+	<script src="js/stats.js"></script>
+	<script src="js/jobs.js"></script>
+	<script src="js/shop.js"></script>
+	<script src="js/terminal.js"></script>
+	<script src="vendor/dragula/dragula.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

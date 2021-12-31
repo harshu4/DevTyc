@@ -1,0 +1,14 @@
+.blink_me {
+	animation: blinker 3s linear infinite;
+}
+  
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+#my-player video{
+	width: 100%;
+	height: 100%;
+}
